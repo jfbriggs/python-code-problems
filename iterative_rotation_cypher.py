@@ -41,7 +41,15 @@ def encode(n,strng):
         substring = strng[:idx]
         strng = substring + ' ' + strng[idx:]
 
-    
+    ## Step 4
+    substring_list = strng.split()
+    substrings_shifted = [shift_right(s, n) for s in substring_list]
+    strng = ' '.join(substrings_shifted)
+
+    ## Prepend resulting value with n and a space
+    strng = str(n) + ' ' + strng
+
+    return strng
 
 
 
@@ -55,7 +63,7 @@ def decode(strng):
 quote = 'If you wish to make an apple pie from scratch, you must first invent the universe.'
 solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet'
 
-encode(5, "Hey there buddy")
+print(encode(5, "Hey there buddy"))
 # encode(10, quote)
 # print(encode(10, quote) == solution)
 # print(decode(solution) == quote)
