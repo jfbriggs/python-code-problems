@@ -21,3 +21,20 @@ The value n is then prepended to the resulting string with a space.
 
 Decoding: Decoding simply reverses the encoding process.
 """
+
+def encode(n,strng):
+	#your code goes here. you can do it!
+	pass
+
+def decode(strng):
+	#your code goes here. you can do it!
+	pass
+
+
+## TEST CODE
+
+quote = 'If you wish to make an apple pie from scratch, you must first invent the universe.'
+solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet'
+
+print(encode(10, quote) == solution)
+print(decode(solution) == quote)
