@@ -36,7 +36,13 @@ def encode(n,strng):
     ## Step 2
     strng = shift_right(strng, n)
 
+    ## Step 3
+    for idx in space_indices:
+        substring = strng[:idx]
+        strng = substring + ' ' + strng[idx:]
+
     
+
 
 
 def decode(strng):
@@ -49,6 +55,7 @@ def decode(strng):
 quote = 'If you wish to make an apple pie from scratch, you must first invent the universe.'
 solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet'
 
-encode(10, quote)
+encode(5, "Hey there buddy")
+# encode(10, quote)
 # print(encode(10, quote) == solution)
 # print(decode(solution) == quote)
