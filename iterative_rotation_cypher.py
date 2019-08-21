@@ -22,10 +22,22 @@ The value n is then prepended to the resulting string with a space.
 Decoding: Decoding simply reverses the encoding process.
 """
 
+def shift_right(s, n):
+    for i in range(n):
+        s = s[-1] + s[:-1]
+
+    return s
+
 def encode(n,strng):
-    spaces = [i for i, val in enumerate(strng) if val == ' '] # create list of indices of spaces in string
-    strng = strng.replace(' ', '')
-    print(strng)
+    ## Step 1
+    space_indices = [i for i, val in enumerate(strng) if val == ' '] # create list of indices of spaces in string
+    strng = strng.replace(' ', '') # remove spaces
+
+    ## Step 2
+    strng = shift_right(strng, n)
+
+    
+
 
 def decode(strng):
 	#your code goes here. you can do it!
