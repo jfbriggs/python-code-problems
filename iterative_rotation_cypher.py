@@ -22,11 +22,21 @@ The value n is then prepended to the resulting string with a space.
 Decoding: Decoding simply reverses the encoding process.
 """
 
+## HELPER FUNCTIONS ##
+
 def shift_right(s, n):
     for i in range(n):
         s = s[-1] + s[:-1]
 
     return s
+
+def shift_left(s, n):
+    for i in range(n):
+        s = s[1:] + s[0]
+
+    return s
+
+## CORE FUNCTIONS ##
 
 def encode(n,strng):
     ## Step 1
@@ -51,11 +61,28 @@ def encode(n,strng):
 
     return strng
 
-
-
 def decode(strng):
-	#your code goes here. you can do it!
-	pass
+    substring_list = strng.split()
+    n = int(substring_list.pop(0)) # cut off prepended n and store
+
+    # shift substrings back, re-join with spaces
+    substrings_shifted = [shift_left(s, n) for s in substring_list]
+    strng = ' '.join(substrings_shifted)
+
+    # store space indices, then remove spaces
+    space_indices = [i for i, val in enumerate(strng) if val == ' ']
+    strng = strng.replace(' ', '')
+
+    # shift entire string back n
+    strng = shift_left(strng, n)
+
+    # re-insert spaces
+    for idx in space_indices:
+        substring = strng[:idx]
+        strng = substring + ' ' + strng[idx:]
+
+    return strng
+
 
 
 ## TEST CODE
@@ -63,7 +90,8 @@ def decode(strng):
 quote = 'If you wish to make an apple pie from scratch, you must first invent the universe.'
 solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet'
 
-print(encode(5, "Hey there buddy"))
+print(encode(5, 'Hey there buddy'))
+print(decode('5 udb dyHey there'))
 # encode(10, quote)
 # print(encode(10, quote) == solution)
 # print(decode(solution) == quote)
