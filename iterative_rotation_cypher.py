@@ -23,8 +23,9 @@ Decoding: Decoding simply reverses the encoding process.
 """
 
 def encode(n,strng):
-	#your code goes here. you can do it!
-	pass
+    spaces = [i for i, val in enumerate(strng) if val == ' '] # create list of indices of spaces in string
+    strng = strng.replace(' ', '')
+    print(strng)
 
 def decode(strng):
 	#your code goes here. you can do it!
@@ -36,5 +37,6 @@ def decode(strng):
 quote = 'If you wish to make an apple pie from scratch, you must first invent the universe.'
 solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet'
 
-print(encode(10, quote) == solution)
-print(decode(solution) == quote)
+encode(10, quote)
+# print(encode(10, quote) == solution)
+# print(decode(solution) == quote)
