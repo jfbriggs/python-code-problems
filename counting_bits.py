@@ -6,9 +6,15 @@ Input: 2
 Output: [0, 1, 1]
 """
 
-def countBits(self, num):
-        """
-        :type num: int
-        :rtype: List[int]
-        """
-        
+def countBits(num):
+    result = []
+
+    for i in range(num + 1):
+        binary = bin(i)[2:]
+        count_ones = len(binary.replace('0', ''))
+        result.append(count_ones)
+
+    return result
+
+## TEST CODE ##
+print(countBits(2))
