@@ -11,8 +11,7 @@ def countBits(num):
 
     for i in range(num + 1):
         binary = bin(i)[2:]
-        count_ones = len(binary.replace('0', ''))
-        result.append(count_ones)
+        result.append(binary.count('1'))
 
     return result
 
