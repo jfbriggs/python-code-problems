@@ -85,7 +85,7 @@ def decode(strng):
 
 
 
-## TEST CODE
+## TEST CODE ##
 
 quote = 'If you wish to make an apple pie from scratch, you must first invent the universe.'
 solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apfrok rei tnocsclet'
@@ -93,5 +93,5 @@ solution = '10 hu fmo a,ys vi utie mr snehn rni tvte .ysushou teI fwea pmapi apf
 print(encode(5, 'Hey there buddy'))
 print(decode('5 udb dyHey there'))
 # encode(10, quote)
-# print(encode(10, quote) == solution)
-# print(decode(solution) == quote)
+print(encode(10, quote))
+print(decode(solution))
