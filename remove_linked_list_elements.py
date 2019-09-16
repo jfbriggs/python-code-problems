@@ -14,15 +14,32 @@ class ListNode(object):
         self.val = x
         self.next = None
 
-def removeElements(self, head, val):
+def removeElements(head, val):
     """
     :type head: ListNode
     :type val: int
     :rtype: ListNode
     """
 
+    prev = None
+    current = head
 
-## TEST CODE ##
+    while current:
+        if current.val == val:
+            if current == head:
+                head = current.next
+            else:
+                prev.next = current.next
+        else:
+            prev = current
+        current = current.next
+
+    return head
+
+
+
+
+#### TEST CODE ###
 
 a = ListNode(4)
 b = ListNode(1)
@@ -41,7 +58,16 @@ e.next = f
 f.next = g
 g.next = h
 
-current = a
-while current:
-    print(current.val)
-    current = current.next
+## Print the linked list in list form
+def print_linked_list(head):
+    current = head
+    result = []
+    while current:
+        result.append(current.val)
+        current = current.next
+    print(result)
+
+print_linked_list(a)
+
+## Remove a value from the Linked List and re-print
+print_linked_list(removeElements(a, 2))
