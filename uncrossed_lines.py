@@ -28,7 +28,30 @@ Output: 2
 """
 
 def max_uncrossed_lines(a, b):
-    pass
+    max_matches = 0
+    for n in range(0, len(a)):
+        i = n
+        j = 0
+        last_b_match = -1
+        matches = 0
+
+        while i < len(a):
+            while j < len(b):
+                if a[i] == b[j]:
+                    matches += 1
+                    last_b_match = j
+                    i += 1
+                    if i >= len(a):
+                        break
+                j += 1
+
+            i += 1
+            j = last_b_match + 1
+
+        if matches > max_matches:
+            max_matches = matches
+
+    return max_matches
 
 
 ### TEST CODE ###
