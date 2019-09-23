@@ -28,6 +28,11 @@ Output: 2
 """
 
 def max_uncrossed_lines(a, b):
+    if not a or not b:
+        return 0
+    elif a == b:
+        return len(a)
+
     max_matches = 0
     for n in range(0, len(a)):
         i = n
@@ -58,3 +63,5 @@ def max_uncrossed_lines(a, b):
 
 print(max_uncrossed_lines([2,5,1,2,5], [10,5,2,1,5,2])) # 3
 print(max_uncrossed_lines([1,3,7,1,7,5], [1,9,2,5,1])) # 2
+print(max_uncrossed_lines([], [3, 1, 5])) # 0
+print(max_uncrossed_lines([4, 8, 1, 2], [4, 8, 1, 2])) # 4
