@@ -17,12 +17,7 @@ Signature will always contain 3 numbers; n will always be a non-negative number;
 """
 
 def tribonacci(signature, n):
-    if len(signature) >= n:
-        return signature[:n]
-
-    signature.append(signature[-1] + signature[-2] + signature[-3])
-
-    return tribonacci(signature, n)
+    return tribonacci(signature + [signature[-1] + signature[-2] + signature[-3]], n) if len(signature) < n else signature[:n]
 
 
 
@@ -33,3 +28,4 @@ print(tribonacci([1, 1, 1], 10))
 print(tribonacci([0, 0, 1], 10))
 print(tribonacci([1, 1, 1], 1))
 print(tribonacci([100, 200, 300], 0))
+print(tribonacci([0.5, 0.5, 0.5], 30))
