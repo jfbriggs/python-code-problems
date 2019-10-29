@@ -17,7 +17,14 @@ Signature will always contain 3 numbers; n will always be a non-negative number;
 """
 
 def tribonacci(signature, n):
-    return "Hi"
+    if len(signature) >= n:
+        return signature[:n]
+
+    signature.append(signature[-1] + signature[-2] + signature[-3])
+
+    return tribonacci(signature, n)
+
+
 
 
 ## TEST CODE ##
