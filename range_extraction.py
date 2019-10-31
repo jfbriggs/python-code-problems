@@ -35,6 +35,7 @@ def solution(args):
     for i in range(1, len(args)):
         if args[i] > curr_subrange_end + 1: # if the current value is more than 1 greater than the prior (meaning the current subrange is ending)
             result += create_substring(curr_subrange_start, curr_subrange_end, False)
+            # reset subrange values to current value in loop
             curr_subrange_start = args[i]
             curr_subrange_end = args[i]
         else: # if the current value is just 1 greater than the prior value
