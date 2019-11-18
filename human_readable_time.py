@@ -9,7 +9,17 @@ The maximum time never exceeds 359999 (99:59:59)
 """
 
 def make_readable(seconds):
-    pass
+    hours = seconds // 3600
+    min = seconds % 3600 // 60
+    sec = seconds % 3600 % 60
+
+    def double_digit_string(n):
+        if n < 10:
+            return "0" + str(n)
+        else:
+            return str(n)
+
+    return "{}:{}:{}".format(double_digit_string(hours), double_digit_string(min), double_digit_string(sec))
 
 
 ## TEST CODE ##
