@@ -13,8 +13,27 @@ rgb(148, 0, 211) # returns 9400D3
 """
 
 def rgb(r, g, b):
-    #your code here :)
-    pass
+    rgb_values = [r, g, b]
+    letter_codes = {10: "A", 11: "B", 12: "C", 13: "D", 14: "E", 15: "F"}
+    output = ""
+
+    # helper function to convert a digit
+    def convert_digit(d):
+        if d <= 9:
+            return str(d)
+        else:
+            return letter_codes[d]
+
+    for value in rgb_values:
+        if value < 0:
+            output += "00"
+        elif value > 255:
+            output += "FF"
+        else:
+            output += convert_digit(value // 16) + convert_digit(value % 16)
+
+    return output
+
 
 ### TEST CODE ###
 
