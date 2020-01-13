@@ -16,3 +16,32 @@ Solution steps:
 [3, 3, 3] #-> X[1] = 6 - 3
 
 """
+
+def solution(lst):
+    # sort list
+    lst = sorted(lst)
+    # if first and last values in list are the same
+    if lst[0] == lst[-1]:
+        # return sum of the list
+        return sum(lst)
+    # for each element in the list
+    for i in range(len(lst)):
+        # calc modulo value of current val and first val
+        mod_val = lst[i] % lst[0]
+        # if that element % the first element == 0
+        if mod_val == 0:
+            # that element becomes the same as the first element
+            lst[i] = lst[0]
+        # otherwise
+        else:
+            # that element becomes the remainder of the modulo operation
+            lst[i] = mod_val
+    # re-run solution() on the modified list
+    return solution(lst)
+
+
+### TEST CODE ###
+print(solution([6, 9, 21])) # 9
+print(solution([11, 2, 19, 7])) # 4
+print(solution([2, 2])) # 4
+print(solution([7])) # 7
