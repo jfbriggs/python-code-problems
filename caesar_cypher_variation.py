@@ -48,12 +48,12 @@ def moving_shift(s, shift):
     def shift_forward(c, n):
         char_value = ord(c)
         if (char_value >= 65) and (char_value <= 90): # capital letter
-            char_value = char_value + n
-            while char_value > 90:
+            char_value = char_value + (n % 26)
+            if char_value > 90:
                 char_value = char_value - 90 + 64
         elif (char_value >= 97) and (char_value <= 122): # lowercase
-            char_value = char_value + n
-            while char_value > 122:
+            char_value = char_value + (n % 26)
+            if char_value > 122:
                 char_value = char_value - 122 + 96
 
         return chr(char_value)
@@ -91,7 +91,31 @@ def moving_shift(s, shift):
 
 
 def demoving_shift(s, shift):
-    pass
+    # join string
+    s = "".join(s)
+
+    #shift back helper function
+    def shift_backward(c, n):
+        char_value = ord(c)
+        if (char_value >= 65) and (char_value <= 90): # capital letter
+            char_value = char_value - (n % 26)
+            if char_value < 65:
+                char_value = 90 - (64 - char_value)
+        elif (char_value >= 97) and (char_value <= 122): # lowercase
+            char_value = char_value - (n % 26)
+            if char_value < 97:
+                char_value = 122 - (96 - char_value)
+
+        return chr(char_value)
+
+    # iterate through string, shifting each character back
+    result = ""
+    for c in s:
+        result += shift_backward(c, shift)
+        shift += 1
+
+    return result
+
 
 ## TEST CODE ##
 
