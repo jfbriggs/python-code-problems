@@ -39,9 +39,56 @@ and demovingShift(v, 1) returns u. #Ref:
 Caesar Cipher : http://en.wikipedia.org/wiki/Caesar_cipher
 
 """
+from math import ceil
 
 def moving_shift(s, shift):
-    pass
+    shifted_string = ""
+
+    # shift forward helper function
+    def shift_forward(c, n):
+        char_value = ord(c)
+        if (char_value >= 65) and (char_value <= 90): # capital letter
+            char_value = char_value + n
+            while char_value > 90:
+                char_value = char_value - 90 + 64
+        elif (char_value >= 97) and (char_value <= 122): # lowercase
+            char_value = char_value + n
+            while char_value > 122:
+                char_value = char_value - 122 + 96
+
+        return chr(char_value)
+
+    # shift all characters in string
+    for char in s:
+        shifted_string += shift_forward(char, shift)
+        shift += 1
+
+    # generate list of split values
+    splits = []
+    length = len(s)
+
+    if length % 5 != 0:
+        split_value = ceil(length / 5)
+    else:
+        split_value = length / 5
+
+    while len(splits) < 5:
+        if length >= split_value:
+            splits.append(split_value)
+            length -= split_value
+        else:
+            splits.append(length)
+            length -= length
+
+    # generate split string
+    result = []
+    for val in splits:
+        result.append(shifted_string[:val])
+        shifted_string = shifted_string[val:]
+
+    # return split string
+    return result
+
 
 def demoving_shift(s, shift):
     pass
