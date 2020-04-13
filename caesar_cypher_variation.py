@@ -70,7 +70,7 @@ def moving_shift(s, shift):
     if length % 5 != 0:
         split_value = ceil(length / 5)
     else:
-        split_value = length / 5
+        split_value = int(length / 5)
 
     while len(splits) < 5:
         if length >= split_value:
