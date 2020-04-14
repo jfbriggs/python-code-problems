@@ -31,7 +31,25 @@ Hence the result path is itself : ["NORTH", "WEST", "SOUTH", "EAST"].
 """
 
 def dir_reduc(arr):
-    pass
+    opposites = {
+        "NORTH": "SOUTH",
+        "SOUTH": "NORTH",
+        "EAST": "WEST",
+        "WEST": "EAST"
+    }
+
+    reduced = True
+
+    while reduced == True:
+        reduced = False
+
+        if len(arr) > 1:
+            for i in range(1, len(arr)):
+                if arr[i - 1] == opposites[arr[i]]:
+                    arr = arr[:i - 1] + arr[i + 1:]
+                    reduced = True
+                    break
+    return arr
 
 ## TEST CODE ##
 print(dir_reduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])) # ["WEST"]
