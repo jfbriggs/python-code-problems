@@ -44,9 +44,10 @@ def dir_reduc(arr):
         reduced = False
 
         if len(arr) > 1:
-            for i in range(1, len(arr)):
-                if arr[i - 1] == opposites[arr[i]]:
-                    arr = arr[:i - 1] + arr[i + 1:]
+            for i in range(len(arr) - 1):
+                if arr[i + 1] == opposites[arr[i]]:
+                    arr.pop(i)
+                    arr.pop(i)
                     reduced = True
                     break
     return arr
