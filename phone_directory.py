@@ -29,51 +29,35 @@ or it can happen that the number num is not in the phone book, in that case
 return: "Error => Not found: num"
 
 """
+
 import re
 def phone(string, num):
+    num_occurrences = string.count(num)
+
+    if num_occurrences == 0:
+        return "Error => Not found: " + num
+
+    if num_occurrences > 1:
+        return "Error => Too many people: " + num
+
     entries = string.split("\n")
-    names = []
-    phone_numbers = []
-    addresses = []
 
-    # print(entries)
     for entry in entries:
-        if len(entry) > 0:
-
-            # parse out phone number
+        if num in entry:
             phone_number = re.search(r"\+\d{1,2}-\d{3}-\d{3}-\d{4}\w?", entry).group(0)
-            phone_numbers.append(phone_number.replace("+", ""))
             entry = entry.replace(phone_number, "")
 
-            # parse out name
             name = re.search(r"\<[A-Za-z]+\s?[A-Za-z']+?\>", entry).group(0)
-            names.append(re.sub(r"[<>]", "", name))
             entry = entry.replace(name, "")
 
-            # gather the remaining words for address, replacing any underscores first
             entry = entry.replace("_", " ")
             zip = re.findall(r"\w+\-\w+", entry)
             if zip:
                 entry = entry.replace(zip[0], "")
             street_address = re.findall(r"\w+\.?", entry)
             address = " ".join(street_address + zip)
-            addresses.append(address)
 
-    # search for matching phone #
-    match_index = -1
-    for i, number in enumerate(phone_numbers):
-        if number == num:
-            if match_index == -1:
-                match_index = i
-            else:
-                return "Error => Too many people: " + num
-
-    if match_index == -1:
-        return "Error => Not found: " + num
-    else:
-        return "Phone => " + num + ", Name => " + names[match_index] + ", Address => " + addresses[match_index]
-
-
+            return "Phone => " + num + ", Name => " + name + ", Address => " + address
 
 
 ## TEST CODE ##
