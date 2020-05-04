@@ -27,8 +27,83 @@ The following rules should be observed:
 
 """
 
+import re
+
 def n00bify(text):
-    pass
+    word_replacements = {
+        "be": "b",
+        "are": "r",
+        "you": "u",
+        "please": "plz",
+        "people": "ppl",
+        "really": "rly",
+        "have": "haz",
+        "know": "no"
+    }
+
+    text_split = text.split(" ")
+    word_count = len(text_split)
+
+    for i in range(len(text_split)):
+        current = text_split[i]
+        capitalized = current == current.capitalize()
+        current = current.lower()
+
+        if current in word_replacements.keys():
+            current = word_replacements[current]
+
+        current = re.sub(r"too?", "2", current)
+        current = re.sub(r"fore?", "4", current)
+        current = re.sub("oo", "00", current)
+        current = re.sub("s", "z", current)
+
+        if capitalized:
+            current = current.capitalize()
+
+        text_split[i] = current
+
+    text_joined = " ".join(text_split)
+    text_joined = re.sub(r"[\.\,\']", "", text_joined)
+
+
+    if text_joined[0].lower() == "w":
+        text_joined = "LOL " + text_joined
+
+    if text_joined[0].lower() == "h":
+        text_joined = text_joined.upper()
+
+    character_count = len(re.sub(r"[?!]", "", text_joined))
+
+    if character_count >= 32:
+        if text_joined[:3] == "LOL":
+            text_joined = "LOL OMG" + text_joined[3:]
+        else:
+            text_joined = "OMG " + text_joined
+
+    text_split = text_joined.split(" ")
+
+    for i, word in enumerate(text_split):
+        if i % 2 != 0:
+            text_split[i] = word.upper()
+
+    text_joined = " ".join(text_split)
+
+    last_char = text_joined[-1]
+
+    if last_char in ["!", "?"]:
+        suffix = ""
+        if text_joined[-1] == "?":
+            suffix += "?" * (len(text_split))
+        elif text_joined[-1] == "!":
+            for i in range(len(text_split)):
+                if i % 2 == 0:
+                    suffix += "!"
+                else:
+                    suffix += "1"
+        text_joined = text_joined[:-1] + suffix
+
+
+    return text_joined
 
 
 ## TEST CODE ##
