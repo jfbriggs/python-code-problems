@@ -39,8 +39,21 @@ def sum_pairs(ints, s):
 
     pair_indices = []
     for pair in possible_pairs:
-        indices = sorted([ints.index(pair[0]), ints.index(pair[1])])
-        pair_indices.append(indices)
+        indices = []
+
+        if pair[0] == pair[1]:
+            for i, val in enumerate(ints):
+                if val == pair[0]:
+                    indices.append(i)
+                    if len(indices) == 2:
+                        break
+        else:
+            indices.append(ints.index(pair[0]))
+            indices.append(ints.index(pair[1]))
+            indices.sort()
+
+        if len(indices) == 2:
+            pair_indices.append(indices)
 
     if len(pair_indices) > 1:
         pair_indices.sort(key=lambda pair: pair[1])
