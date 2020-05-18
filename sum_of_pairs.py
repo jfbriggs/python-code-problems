@@ -23,7 +23,30 @@ Negative numbers and duplicate numbers can and will appear.
 
 """
 def sum_pairs(ints, s):
-    pass
+    unique_values = set(ints)
+    possible_pairs = []
+
+    while len(unique_values) > 1:
+        first_val = unique_values.pop()
+        comp_val = s - first_val
+        if (first_val == comp_val) or (comp_val in unique_values):
+            possible_pairs.append((first_val, comp_val))
+            if first_val != comp_val:
+                unique_values.remove(comp_val)
+
+    if len(possible_pairs) == 0:
+        return None
+
+    pair_indices = []
+    for pair in possible_pairs:
+        indices = sorted([ints.index(pair[0]), ints.index(pair[1])])
+        pair_indices.append(indices)
+
+    if len(pair_indices) > 1:
+        pair_indices.sort(key=lambda pair: pair[1])
+
+    return [ints[pair_indices[0][0]], ints[pair_indices[0][1]]]
+
 
 
 
