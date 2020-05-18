@@ -37,7 +37,7 @@ def sum_pairs(ints, s):
     if len(possible_pairs) == 0:
         return None
 
-    pair_indices = []
+    indices_pairs = []
     for pair in possible_pairs:
         indices = []
 
@@ -53,12 +53,12 @@ def sum_pairs(ints, s):
             indices.sort()
 
         if len(indices) == 2:
-            pair_indices.append(indices)
+            indices_pairs.append(indices)
 
-    if len(pair_indices) > 1:
-        pair_indices.sort(key=lambda pair: pair[1])
+    if len(indices_pairs) > 1:
+        indices_pairs.sort(key=lambda pair: pair[1])
 
-    return [ints[pair_indices[0][0]], ints[pair_indices[0][1]]]
+    return [ints[indices_pairs[0][0]], ints[indices_pairs[0][1]]]
 
 
 
