@@ -22,3 +22,33 @@ A B C X Y Z
 - To beautify the histogram, there is a space between every pair of columns.
 - There are no extra spaces at the end of each row. Also, use "\n" to separate rows.
 """
+
+def vertical_histogram_of(s):
+    # your code here
+    pass
+
+
+## TEST CODE ##
+
+print(vertical_histogram_of("XXY YY ZZZ123ZZZ AAA BB C"))
+
+"""
+          *
+          *
+          *
+*       * *
+* *   * * *
+* * * * * *
+A B C X Y Z
+"""
+
+print(vertical_histogram_of("AAABBC"))
+
+"""
+*
+* *
+* * *
+A B C
+"""
+
+print(vertical_histogram_of("abc123")) # empty string
