@@ -22,10 +22,52 @@ A B C X Y Z
 - To beautify the histogram, there is a space between every pair of columns.
 - There are no extra spaces at the end of each row. Also, use "\n" to separate rows.
 """
+import string
 
 def vertical_histogram_of(s):
-    # your code here
-    pass
+    # establish counts for each letter
+    uppers = string.ascii_uppercase
+    letters = []
+    counts = []
+    for letter in uppers:
+        letter_count = s.count(letter)
+        if letter_count > 0:
+            letters.append(letter)
+            counts.append(letter_count)
+
+    # return empty string if no count values
+    if len(counts) == 0:
+        return ""
+
+    # create list of asterisk-rows
+    highest_count = max(counts)
+    hist_rows = []
+
+    # iterate through range (backwards) representing # of rows
+    for i in range(highest_count, 0, -1):
+        # determine last index of column with matching count value for the row
+        last_matching = 0
+        for j, val in enumerate(counts):
+            if val >= i:
+                last_matching = j
+
+        # generate row-string with * or space up to applicable index
+        row = ""
+        for k in range(last_matching + 1):
+            if counts[k] >= i:
+                row = row + "* "
+            else:
+                row = row + "  "
+
+        # append row to rows list, excluding unnecessary space at end of row-string
+        hist_rows.append(row[:-1])
+
+    # combine row-strings by joining with newline character
+    hist_string = "\n".join(hist_rows)
+
+    # return final combined string that includes row of letters associated with columns
+    return hist_string + "\n" + " ".join(letters)
+
 
 
 ## TEST CODE ##
