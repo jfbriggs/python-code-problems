@@ -69,20 +69,21 @@ def sort_by_name(arr):
 
     # helper func to convert int to its name string
     def convert_int(num):
-        
+
         name = ""
-        if num < 10:
-            name = ones[num]
-        elif num < 20:
-            name = teens[num]
-        else:
+        while num > 0:
             if num > 99:
                 name = name + ones[num // 100] + " hundred"
                 num = num % 100
-            name = name + " " + tens[num // 10]
-            num = num % 10
-            if num > 0:
+            elif num > 19:
+                name = name + " " + tens[num // 10]
+                num = num % 10
+            elif num > 9:
+                name = name + " " + teens[num]
+                num = 0
+            else:
                 name = name + " " + ones[num]
+                num = 0
 
         return name.strip()
 
