@@ -56,7 +56,7 @@ def sort_by_name(arr):
     tens = {
         2: "twenty",
         3: "thirty",
-        4: "fourty",
+        4: "forty",
         5: "fifty",
         6: "sixty",
         7: "seventy",
@@ -64,11 +64,13 @@ def sort_by_name(arr):
         9: "ninety"
     }
 
-    if len(arr) == 1:
+    if len(arr) < 2:
         return arr
 
     # helper func to convert int to its name string
     def convert_int(num):
+        if num == 0:
+            return "zero"
 
         name = ""
         while num > 0:
@@ -87,10 +89,8 @@ def sort_by_name(arr):
 
         return name.strip()
 
-    # if arr is NOT empty
-    if len(arr) > 1:
-        names_and_nums = sorted([(convert_int(num), num) for num in arr])
-        return [val[1] for val in names_and_nums]
+    names_and_nums = sorted([(convert_int(num), num) for num in arr])
+    return [val[1] for val in names_and_nums]
 
 
 ### TEST CODE ###
