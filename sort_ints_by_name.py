@@ -27,7 +27,71 @@ e.g. "ninety eight", "ninety nine"; is same order as "ninety-eight", "ninety-nin
 """
 
 def sort_by_name(arr):
-    return # sorted array
+    # int-string mappings
+    ones = {
+        1: "one",
+        2: "two",
+        3: "three",
+        4: "four",
+        5: "five",
+        6: "six",
+        7: "seven",
+        8: "eight",
+        9: "nine"
+    }
+
+    teens = {
+        10: "ten",
+        11: "eleven",
+        12: "twelve",
+        13: "thirteen",
+        14: "fourteen",
+        15: "fifteen",
+        16: "sixteen",
+        17: "seventeen",
+        18: "eighteen",
+        19: "nineteen"
+    }
+
+    tens = {
+        2: "twenty",
+        3: "thirty",
+        4: "fourty",
+        5: "fifty",
+        6: "sixty",
+        7: "seventy",
+        8: "eighty",
+        9: "ninety"
+    }
+
+    if len(arr) == 1:
+        return arr
+
+    result = []
+
+    # helper func to convert int to its name string
+    def convert_int(num):
+        name = ""
+        if num < 10:
+            name = ones[num]
+        elif num < 20:
+            name = teens[num]
+        else:
+            if num > 99:
+                name = name + ones[num // 100] + " hundred"
+                num = num % 100
+            name = name + " " + tens[num // 10]
+            num = num % 10
+            if num > 0:
+                name = name + " " + ones[num]
+
+        return name
+
+    # if arr is NOT empty
+    result = list(map(convert_int, arr))
+
+
+    return result # sorted array
 
 
 ### TEST CODE ###
