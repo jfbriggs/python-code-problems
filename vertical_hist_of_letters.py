@@ -45,22 +45,16 @@ def vertical_histogram_of(s):
 
     # iterate through range (backwards) representing # of rows
     for i in range(highest_count, 0, -1):
-        # determine last index of column with matching count value for the row
-        last_matching = 0
-        for j, val in enumerate(counts):
-            if val >= i:
-                last_matching = j
-
-        # generate row-string with * or space up to applicable index
+        # generate row-string with * or space
         row = ""
-        for k in range(last_matching + 1):
-            if counts[k] >= i:
+        for count in counts:
+            if count >= i:
                 row = row + "* "
             else:
                 row = row + "  "
 
         # append row to rows list, excluding unnecessary space at end of row-string
-        hist_rows.append(row[:-1])
+        hist_rows.append(row.rstrip())
 
     # combine row-strings by joining with newline character
     hist_string = "\n".join(hist_rows)
