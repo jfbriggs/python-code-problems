@@ -67,10 +67,9 @@ def sort_by_name(arr):
     if len(arr) == 1:
         return arr
 
-    result = []
-
     # helper func to convert int to its name string
     def convert_int(num):
+        
         name = ""
         if num < 10:
             name = ones[num]
@@ -85,13 +84,12 @@ def sort_by_name(arr):
             if num > 0:
                 name = name + " " + ones[num]
 
-        return name
+        return name.strip()
 
     # if arr is NOT empty
-    result = list(map(convert_int, arr))
-
-
-    return result # sorted array
+    if len(arr) > 1:
+        names_and_nums = sorted([(convert_int(num), num) for num in arr])
+        return [val[1] for val in names_and_nums]
 
 
 ### TEST CODE ###
