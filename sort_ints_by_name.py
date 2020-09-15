@@ -28,7 +28,7 @@ e.g. "ninety eight", "ninety nine"; is same order as "ninety-eight", "ninety-nin
 
 def sort_by_name(arr):
     # int-string mappings
-    ones = {
+    int_names = {
         1: "one",
         2: "two",
         3: "three",
@@ -37,10 +37,7 @@ def sort_by_name(arr):
         6: "six",
         7: "seven",
         8: "eight",
-        9: "nine"
-    }
-
-    teens = {
+        9: "nine",
         10: "ten",
         11: "eleven",
         12: "twelve",
@@ -50,18 +47,15 @@ def sort_by_name(arr):
         16: "sixteen",
         17: "seventeen",
         18: "eighteen",
-        19: "nineteen"
-    }
-
-    tens = {
-        2: "twenty",
-        3: "thirty",
-        4: "forty",
-        5: "fifty",
-        6: "sixty",
-        7: "seventy",
-        8: "eighty",
-        9: "ninety"
+        19: "nineteen",
+        20: "twenty",
+        30: "thirty",
+        40: "forty",
+        50: "fifty",
+        60: "sixty",
+        70: "seventy",
+        80: "eighty",
+        90: "ninety"
     }
 
     if len(arr) < 2:
@@ -75,16 +69,16 @@ def sort_by_name(arr):
         name = ""
         while num > 0:
             if num > 99:
-                name = name + ones[num // 100] + " hundred"
+                name = name + int_names[num // 100] + " hundred"
                 num = num % 100
             elif num > 19:
-                name = name + " " + tens[num // 10]
+                name = name + " " + int_names[num // 10]
                 num = num % 10
             elif num > 9:
-                name = name + " " + teens[num]
+                name = name + " " + int_names[num]
                 num = 0
             else:
-                name = name + " " + ones[num]
+                name = name + " " + int_names[num]
                 num = 0
 
         return name.strip()
