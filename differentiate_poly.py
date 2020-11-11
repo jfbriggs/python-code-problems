@@ -15,7 +15,36 @@ differentiate("x^2+3x+2", 3)   ==>   returns 9
 """
 
 def differentiate(equation, point):
-    return
+    equation = equation.replace("-", "+-")
+    equation_split = equation.split("+")
+
+    result = 0
+
+    for chunk in equation_split:
+        if "x" in chunk:
+            if chunk[0] == "x":
+                chunk = "1x" + chunk[1:]
+            elif chunk[:2] == "-x":
+                chunk = "-1x" + chunk[2:]
+
+            if chunk[-1] == "x":
+                chunk = chunk + "^1"
+
+            chunk_split = chunk.split("x")
+            coef = int(chunk_split[0])
+            exponent = int(chunk_split[1].replace("^", ""))
+
+            # multiply coef by exp and reduce exp by 1 (calculating derivative of equation)
+            coef = coef * exponent
+            exponent -= 1
+
+            if exponent > 0:
+                result += coef * point ** exponent
+            else:
+                result += coef
+
+    return result
+
 
 
 ### TEST CODE ###
