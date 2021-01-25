@@ -53,6 +53,9 @@ def can_measure_water(x, y, z):
     if x + y < z:
         return False
 
+    if x + y == z:
+        return True
+
     if z % gcd(x, y) == 0:
         return True
     else:
@@ -63,3 +66,4 @@ def can_measure_water(x, y, z):
 print(can_measure_water(3, 5, 4)) # True
 print(can_measure_water(2, 6, 5)) # False
 print(can_measure_water(7, 10, 6)) # True
+print(can_measure_water(0, 0, 5)) # False
