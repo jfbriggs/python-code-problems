@@ -26,6 +26,7 @@ Constraints:
 """
 
 
+
 def can_measure_water(x, y, z):
     """
     :type x: int
@@ -33,4 +34,32 @@ def can_measure_water(x, y, z):
     :type z: int
     :rtype: bool
     """
-    pass
+
+    # define greatest common denominator func
+    def gcd(x, y):
+        if (x == 0) and (y != 0):
+            return y
+        elif (y == 0) and (x != 0):
+            return x
+        else:
+            while x != y:
+                if x > y:
+                    x = x - y
+                else:
+                    y = y - x
+
+        return x
+
+    if x + y < z:
+        return False
+
+    if z % gcd(x, y) == 0:
+        return True
+    else:
+        return False
+
+## TEST CODE ##
+
+print(can_measure_water(3, 5, 4)) # True
+print(can_measure_water(2, 6, 5)) # False
+print(can_measure_water(7, 10, 6)) # True
