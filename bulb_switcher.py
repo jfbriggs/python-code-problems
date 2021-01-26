@@ -39,8 +39,22 @@ Output: 5
 """
 
 def min_flips(target):
-    pass
-
+    # create list - split on zeroes
+    zeroes_split = target.split("0")
+    # create list - split on 1s
+    ones_split = target.split("1")
+    # get length of zeroes list (items with len > 0 only)
+    zeroes_segments = len([i for i in zeroes_split if len(i) > 0])
+    # get length of 1s list (items with len > 0 only)
+    ones_segments = len([i for i in ones_split if len(i) > 0])
+    # if first char in target is a 0
+    if target[0] == "0":
+        # return sum of list lengths - 1
+        return zeroes_segments + ones_segments - 1
+    # otherwise
+    else:
+        # return sum of list lengths
+        return zeroes_segments + ones_segments
 
 ### TEST CODE ###
 
@@ -48,4 +62,4 @@ print(min_flips("10111")) # 3
 print(min_flips("101")) # 3
 print(min_flips("00000")) # 0
 print(min_flips("001011101")) # 5
-print(min_flips("111") # 1
+print(min_flips("111")) # 1
